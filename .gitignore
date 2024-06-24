@@ -23,3 +23,8 @@
 
 # Ignore .env files as they are personal
 /.env
+
+# ignore notes for the development
+/notes/
+
+
