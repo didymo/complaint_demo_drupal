@@ -131,7 +131,7 @@ final class Survey extends RevisionableContentEntityBase implements SurveyInterf
   /**
    * {@inheritdoc}
    */
-  public function getObdId(): int
+  public function getObdId(): string
   {
     return $this->get('obd_id')->value;
   }
