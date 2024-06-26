@@ -30,3 +30,7 @@
 # ignore the data base backups
 #
 /web/sites/default/db_backup
+
+# ignore the modules directory
+#
+/web/modules
