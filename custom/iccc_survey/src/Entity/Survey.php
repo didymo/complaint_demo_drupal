@@ -8,6 +8,7 @@ use Drupal\Core\Entity\EntityChangedTrait;
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Entity\RevisionableContentEntityBase;
+use Drupal\Core\Entity\RevisionableInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\iccc_survey\SurveyInterface;
 use Drupal\user\EntityOwnerTrait;
@@ -98,6 +99,115 @@ final class Survey extends RevisionableContentEntityBase implements SurveyInterf
   /**
    * {@inheritdoc}
    */
+  protected function urlRouteParameters($rel)
+  {
+    $uri_route_parameters = parent::urlRouteParameters($rel);
+
+    if ($rel === 'revision_revert' && $this instanceof RevisionableInterface) {
+      $uri_route_parameters[$this->getEntityTypeId() . '_revision'] = $this->getRevisionId();
+    } elseif ($rel === 'revision_delete' && $this instanceof RevisionableInterface) {
+      $uri_route_parameters[$this->getEntityTypeId() . '_revision'] = $this->getRevisionId();
+    }
+
+    return $uri_route_parameters;
+  }
+
+  /**
+   * @inheritDoc
+   */
+  public function getName(): string
+  {
+    return $this->get('label')->value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setName(string $name): SurveyInterface
+  {
+    $this->set('label', $name);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getObdId(): int
+  {
+    return $this->get('obd_id')->value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setObdId($obdId): SurveyInterface
+  {
+    $this->set('obd_id', $obdId);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getJsonString(): string
+  {
+    return $this->get('json_string')->value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setJsonString(string $jsonString): SurveyInterface
+  {
+    $this->set('json_string', $jsonString);
+    return $this;
+  }
+  /**
+   * {@inheritdoc}
+   */
+  public function getRevisionStatus() {
+    $targetId = $this->get('revision_status')->getValue();
+
+    if (isset($targetId[0])) {
+      $term = Term::load($targetId[0]['target_id']);
+
+      return $term->getName();
+    } else {
+      return NULL;
+    }
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setRevisionStatus($term_name) {
+    $terms = \Drupal::entityTypeManager()
+      ->getStorage('taxonomy_term')
+      ->loadByProperties(['name' => $term_name]);
+    $term = array_pop($terms);
+    $this->set('revision_status', $term->id());
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getCreatedTime()
+  {
+    return $this->get('created')->value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setCreatedTime($timestamp)
+  {
+    $this->set('created', $timestamp);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public static function baseFieldDefinitions(EntityTypeInterface $entity_type): array
   {
 
@@ -143,6 +253,7 @@ final class Survey extends RevisionableContentEntityBase implements SurveyInterf
       ])
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
+
     $fields['revision_status'] = BaseFieldDefinition::create('entity_reference')
       ->setLabel(t('Revision Status'))
       ->setDescription(t('The status of this revision.'))
@@ -171,6 +282,7 @@ final class Survey extends RevisionableContentEntityBase implements SurveyInterf
       ])
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
+
     $fields['status'] = BaseFieldDefinition::create('boolean')
       ->setRevisionable(TRUE)
       ->setLabel(t('Status'))
