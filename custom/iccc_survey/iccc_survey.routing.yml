@@ -1,0 +1,7 @@
+entity.iccc_survey_survey.settings:
+  path: 'admin/structure/iccc-survey-survey'
+  defaults:
+    _form: '\Drupal\iccc_survey\Form\SurveySettingsForm'
+    _title: 'Survey'
+  requirements:
+    _permission: 'administer iccc_survey_survey'

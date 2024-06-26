@@ -1,0 +1,10 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - iccc_survey
+id: iccc_survey_survey_delete_action
+label: 'Delete surveys'
+type: iccc_survey_survey
+plugin: entity:delete_action:iccc_survey_survey
+configuration: {  }

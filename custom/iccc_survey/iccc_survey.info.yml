@@ -1,0 +1,5 @@
+name: 'Survey'
+type: module
+description: 'Create and manages the Surveys used in the formbuilder.'
+package: Didymo Designs
+core_version_requirement: ^10

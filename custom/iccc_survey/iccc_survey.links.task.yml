@@ -1,0 +1,22 @@
+entity.iccc_survey_survey.settings:
+  title: 'Settings'
+  route_name: entity.iccc_survey_survey.settings
+  base_route: entity.iccc_survey_survey.settings
+entity.iccc_survey_survey.view:
+  title: 'View'
+  route_name: entity.iccc_survey_survey.canonical
+  base_route: entity.iccc_survey_survey.canonical
+entity.iccc_survey_survey.edit_form:
+  title: 'Edit'
+  route_name: entity.iccc_survey_survey.edit_form
+  base_route: entity.iccc_survey_survey.canonical
+entity.iccc_survey_survey.delete_form:
+  title: 'Delete'
+  route_name: entity.iccc_survey_survey.delete_form
+  base_route: entity.iccc_survey_survey.canonical
+  weight: 10
+entity.iccc_survey_survey.collection:
+  title: 'Surveys'
+  route_name: entity.iccc_survey_survey.collection
+  base_route: system.admin_content
+  weight: 10

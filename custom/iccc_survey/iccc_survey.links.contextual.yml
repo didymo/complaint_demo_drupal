@@ -1,0 +1,10 @@
+entity.iccc_survey_survey.edit_form:
+  route_name: entity.iccc_survey_survey.edit_form
+  group: iccc_survey_survey
+  title: 'Edit'
+
+entity.iccc_survey_survey.delete_form:
+  route_name: entity.iccc_survey_survey.delete_form
+  group: iccc_survey_survey
+  title: 'Delete'
+  weight: 10

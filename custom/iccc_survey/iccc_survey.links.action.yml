@@ -1,0 +1,5 @@
+iccc_survey_survey.add_form:
+  title: 'Add survey'
+  route_name: entity.iccc_survey_survey.add_form
+  appears_on:
+    - entity.iccc_survey_survey.collection

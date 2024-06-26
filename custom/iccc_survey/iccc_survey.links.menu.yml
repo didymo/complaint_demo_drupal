@@ -1,0 +1,11 @@
+entity.iccc_survey_survey.settings:
+  title: 'Survey'
+  description: 'Configure a Survey entity type.'
+  route_name:  entity.iccc_survey_survey.settings
+  parent: system.admin_structure
+
+entity.iccc_survey_survey.collection:
+  title: 'Surveys'
+  description: 'List of surveys.'
+  route_name: entity.iccc_survey_survey.collection
+  parent: system.admin_content

@@ -27,4 +27,6 @@
 # ignore notes for the development
 /notes/
 
-
+# ignore the data base backups
+#
+/web/sites/default/db_backup

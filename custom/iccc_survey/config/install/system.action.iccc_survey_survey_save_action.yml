@@ -1,0 +1,10 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - iccc_survey
+id: iccc_survey_survey_save_action
+label: 'Save surveys'
+type: iccc_survey_survey
+plugin: entity:save_action:iccc_survey_survey
+configuration: {  }

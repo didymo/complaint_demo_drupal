@@ -1,0 +1,17 @@
+administer iccc_survey_survey:
+  title: 'Administer surveys'
+  restrict access: true
+view iccc_survey_survey:
+  title: 'View survey'
+edit iccc_survey_survey:
+  title: 'Edit survey'
+delete iccc_survey_survey:
+  title: 'Delete survey'
+create iccc_survey_survey:
+  title: 'Create survey'
+view iccc_survey_survey revision:
+  title: 'View survey revision'
+revert iccc_survey_survey revision:
+  title: 'Revert survey revision'
+delete iccc_survey_survey revision:
+  title: 'Delete survey revision'

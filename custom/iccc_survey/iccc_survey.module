@@ -1,0 +1,94 @@
+<?php
+
+declare(strict_types=1);
+
+/**
+ * @file
+ * Provides a survey entity type.
+ */
+
+use Drupal\Core\Render\Element;
+use Drupal\user\UserInterface;
+
+/**
+ * Implements hook_theme().
+ */
+function iccc_survey_theme(): array {
+  return [
+    'iccc_survey_survey' => ['render element' => 'elements'],
+  ];
+}
+
+/**
+ * Prepares variables for survey templates.
+ *
+ * Default template: iccc-survey-survey.html.twig.
+ *
+ * @param array $variables
+ *   An associative array containing:
+ *   - elements: An associative array containing the survey information and any
+ *     fields attached to the entity.
+ *   - attributes: HTML attributes for the containing element.
+ */
+function template_preprocess_iccc_survey_survey(array &$variables): void {
+  $variables['view_mode'] = $variables['elements']['#view_mode'];
+  foreach (Element::children($variables['elements']) as $key) {
+    $variables['content'][$key] = $variables['elements'][$key];
+  }
+}
+
+/**
+ * Implements hook_user_cancel().
+ */
+function iccc_survey_user_cancel($edit, UserInterface $account, $method): void {
+  switch ($method) {
+    case 'user_cancel_block_unpublish':
+      // Unpublish surveys.
+      $storage = \Drupal::entityTypeManager()->getStorage('iccc_survey_survey');
+      $iccc_survey_survey_ids = $storage->getQuery()
+        ->condition('uid', $account->id())
+        ->condition('status', 1)
+        ->accessCheck(FALSE)
+        ->execute();
+      foreach ($storage->loadMultiple($iccc_survey_survey_ids) as $iccc_survey_survey) {
+        $iccc_survey_survey->set('status', FALSE)->save();
+      }
+      break;
+
+    case 'user_cancel_reassign':
+      // Anonymize surveys.
+      $storage = \Drupal::entityTypeManager()->getStorage('iccc_survey_survey');
+      $iccc_survey_survey_ids = $storage->getQuery()
+        ->condition('uid', $account->id())
+        ->accessCheck(FALSE)
+        ->execute();
+      foreach ($storage->loadMultiple($iccc_survey_survey_ids) as $iccc_survey_survey) {
+        $iccc_survey_survey->setOwnerId(0)->save();
+      }
+      break;
+  }
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_predelete() for user entities.
+ */
+function iccc_survey_user_predelete(UserInterface $account): void {
+  // Delete surveys that belong to this account.
+  $storage = \Drupal::entityTypeManager()->getStorage('iccc_survey_survey');
+  $iccc_survey_survey_ids = $storage->getQuery()
+    ->condition('uid', $account->id())
+    ->accessCheck(FALSE)
+    ->execute();
+  $storage->delete(
+    $storage->loadMultiple($iccc_survey_survey_ids)
+  );
+  // Delete old revisions.
+  $iccc_survey_survey_ids = $storage->getQuery()
+    ->allRevisions()
+    ->condition('uid', $account->id())
+    ->accessCheck(FALSE)
+    ->execute();
+  foreach (array_keys($iccc_survey_survey_ids) as $revision_id) {
+    $storage->deleteRevision($revision_id);
+  }
+}
