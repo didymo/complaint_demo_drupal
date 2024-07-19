@@ -1,0 +1,4 @@
+services:
+  survey_generator.service:
+    class: Drupal\iccc_survey\Services\SurveyGenerator\SurveyGeneratorService
+    arguments: ['@entity_type.manager']

@@ -14,7 +14,7 @@
         "cweagans/composer-patches": "^1.7",
         "drupal/core-composer-scaffold": "^10.2.0",
         "drupal/core-recommended": "^10.2.0",
-	"drupal/iccc_survey": "@dev",
+        "drupal/iccc_survey": "*@dev",
         "drupal/jsonapi_extras": "^3.25",
         "drupal/restui": "^1.21",
         "drupal/simple_oauth": "^5.2",
@@ -38,6 +38,10 @@
         {
             "type": "composer",
             "url": "https://asset-packagist.org"
+        },
+	{
+            "type": "path",
+            "url": "custom/iccc_survey"
         }
     ],
     "minimum-stability": "stable",

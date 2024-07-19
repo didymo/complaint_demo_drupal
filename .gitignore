@@ -33,4 +33,4 @@
 
 # ignore the modules directory
 #
-/web/modules
+/web/modules/
