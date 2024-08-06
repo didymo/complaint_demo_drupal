@@ -1,0 +1,7 @@
+entity.survey_documents.settings:
+  path: 'admin/structure/survey-documents'
+  defaults:
+    _form: '\Drupal\survey_documents\Form\SurveyDocumentsSettingsForm'
+    _title: 'Survey Documents'
+  requirements:
+    _permission: 'administer survey_documents'

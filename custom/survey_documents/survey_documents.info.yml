@@ -1,0 +1,11 @@
+name: 'Survey Documents'
+type: module
+description: 'Secure management of files attached to a survey.'
+package: Didymo Designs
+core_version_requirement: ^10
+dependencies:
+  - drupal:file
+  - drupal:user
+  - drupal:field
+  - drupal:text
+  - drupal:rest

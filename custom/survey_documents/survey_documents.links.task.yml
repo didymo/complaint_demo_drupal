@@ -1,0 +1,22 @@
+entity.survey_documents.settings:
+  title: 'Settings'
+  route_name: entity.survey_documents.settings
+  base_route: entity.survey_documents.settings
+entity.survey_documents.view:
+  title: 'View'
+  route_name: entity.survey_documents.canonical
+  base_route: entity.survey_documents.canonical
+entity.survey_documents.edit_form:
+  title: 'Edit'
+  route_name: entity.survey_documents.edit_form
+  base_route: entity.survey_documents.canonical
+entity.survey_documents.delete_form:
+  title: 'Delete'
+  route_name: entity.survey_documents.delete_form
+  base_route: entity.survey_documents.canonical
+  weight: 10
+entity.survey_documents.collection:
+  title: 'Survey Documentss'
+  route_name: entity.survey_documents.collection
+  base_route: system.admin_content
+  weight: 10

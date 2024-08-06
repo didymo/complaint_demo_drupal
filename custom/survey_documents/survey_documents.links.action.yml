@@ -1,0 +1,5 @@
+survey_documents.add_form:
+  title: 'Add survey documents'
+  route_name: entity.survey_documents.add_form
+  appears_on:
+    - entity.survey_documents.collection

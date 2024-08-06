@@ -1,0 +1,11 @@
+entity.survey_documents.settings:
+  title: 'Survey Documents'
+  description: 'Configure a Survey Documents entity type.'
+  route_name:  entity.survey_documents.settings
+  parent: system.admin_structure
+
+entity.survey_documents.collection:
+  title: 'Survey Documentss'
+  description: 'List of survey documentss.'
+  route_name: entity.survey_documents.collection
+  parent: system.admin_content

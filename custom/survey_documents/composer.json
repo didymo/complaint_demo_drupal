@@ -1,0 +1,12 @@
+{
+    "name": "drupal/survey_documents",
+    "type": "drupal-custom-module",
+    "minimum-stability": "dev",
+    "extra": {
+        "drush": {
+            "services": {
+                "drush.services.yml": "^10"
+            }
+        }
+    }
+}

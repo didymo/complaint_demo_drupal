@@ -1,0 +1,10 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - survey_documents
+id: survey_documents_save_action
+label: 'Save survey documentss'
+type: survey_documents
+plugin: entity:save_action:survey_documents
+configuration: {  }

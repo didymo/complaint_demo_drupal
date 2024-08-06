@@ -1,0 +1,10 @@
+entity.survey_documents.edit_form:
+  route_name: entity.survey_documents.edit_form
+  group: survey_documents
+  title: 'Edit'
+
+entity.survey_documents.delete_form:
+  route_name: entity.survey_documents.delete_form
+  group: survey_documents
+  title: 'Delete'
+  weight: 10

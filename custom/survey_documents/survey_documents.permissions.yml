@@ -1,0 +1,11 @@
+administer survey_documents:
+  title: 'Administer survey documentss'
+  restrict access: true
+view survey_documents:
+  title: 'View survey documents'
+edit survey_documents:
+  title: 'Edit survey documents'
+delete survey_documents:
+  title: 'Delete survey documents'
+create survey_documents:
+  title: 'Create survey documents'
