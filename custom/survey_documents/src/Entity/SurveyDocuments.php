@@ -134,6 +134,18 @@ public function setStepId(string $stepId): self {
 
 
   /**
+   * Get the file entity ID.
+   *
+   * @return int|null
+   *   The file entity ID or NULL if no file is associated.
+   */
+  public function getFileId(): ?int {
+    $file = $this->get('file')->entity;
+    return $file ? (int) $file->id() : null;
+  }
+
+
+  /**
    * {@inheritdoc}
    */
   public function preSave(EntityStorageInterface $storage): void {
